@@ -10,6 +10,7 @@ public class ReduceLives : MonoBehaviour
             gameObject.CompareTag("Enemy"))
         {
             LevelManager.Instance.CheckPlayerLives();
+            AudioManager.Instance.Play("Explosion");
         }
     }
 }

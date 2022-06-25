@@ -6,6 +6,7 @@ using System;
 // thanks brackeys
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
     [Header("Scripts")]
     public MixerManager mixerManager;
 
@@ -14,6 +15,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

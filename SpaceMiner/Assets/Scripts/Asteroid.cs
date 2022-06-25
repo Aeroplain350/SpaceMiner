@@ -12,11 +12,13 @@ public class Asteroid : MonoBehaviour
             gameObject.SetActive(false);
 
             LevelManager.Instance.AddScore();
+            AudioManager.Instance.Play("Explosion");
         }
         else if(collision.gameObject.layer == LayerMask.NameToLayer("EnemyBall") &&
             gameObject.layer == LayerMask.NameToLayer("PlayerAsteroids"))
         {
             gameObject.SetActive(false);
+            AudioManager.Instance.Play("Explosion");
         }
 
         if (!LevelManager.Instance.ActiveAsteroids())

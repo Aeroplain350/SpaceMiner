@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -12,6 +13,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("Gameobjects")]
     public GameObject[] asteroids;
+    public Image[] lifeSprites;
 
     [Header("End Panel")]
     public GameObject endPanel;
@@ -123,10 +125,12 @@ public class LevelManager : MonoBehaviour
         if (winLose == "win")
         {
             stateTitle.text = "You Win!";
+            AudioManager.Instance.Play("WinLevel");
         }
         else
         {
             stateTitle.text = "You Lose!";
+            AudioManager.Instance.Play("LoseLevel");
         }
 
         playerScoreText.text = $"Score: {playerScore}";
@@ -134,11 +138,29 @@ public class LevelManager : MonoBehaviour
 
     public void CheckPlayerLives()
     {
-        playerLives--;
+        LoseLife();
 
         if (playerLives <= 0)
         {
             EndLevel("lose");
+        }
+    }
+
+    public void LoseLife()
+    {
+        playerLives--;
+
+        switch (playerLives)
+        {
+            case 0:
+                lifeSprites[0].color = Color.white;
+                break;
+            case 1:
+                lifeSprites[1].color = Color.white;
+                break;
+            case 2:
+                lifeSprites[2].color = Color.white;
+                break;
         }
     }
 }
