@@ -52,6 +52,8 @@ public class MixerManager : MonoBehaviour
             sfxFloat = PlayerPrefs.GetFloat(SFXPref);
             sfxSlider.value = sfxFloat;
         }
+
+        UpdateSound();
     }
 
     public void Update()
